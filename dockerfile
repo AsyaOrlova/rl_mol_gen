@@ -49,7 +49,7 @@ ENV PYTHONPATH=/workspace/rl_mol_gen/:$PYTHONPATH
 COPY ./optimizers.py /usr/local/lib/python3.8/dist-packages/tf_slim/layers
 
 # Change configs in molDQN
-COPY ./naive_dqn.json /workspace/rl_mol_gen/mol_dqn/chemgraph/configs
+# COPY ./naive_dqn.json /workspace/rl_mol_gen/mol_dqn/chemgraph/configs
 
 # Set the default command
 CMD ["/bin/bash"]
