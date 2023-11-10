@@ -15,7 +15,7 @@ from RAscore import RAscore_XGB
 def get_fingerprint(mol):
   """ Converts SMILES into Morgan fingerprint """
   fp_array = np.zeros((0,), dtype=np.int8)
-  fp = AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=256)
+  fp = AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024)
   ConvertToNumpyArray(fp, fp_array)
   return fp_array
 
@@ -70,7 +70,7 @@ def check_lipinski_ro3(mol):
 
   return counter >= 3
 
-smiles = 'CCO'
+smiles = 'CC(=O)OC1=CC=CC=C1C(=O)O'
 m = Chem.MolFromSmiles(smiles)
 
 df = pd.DataFrame()
