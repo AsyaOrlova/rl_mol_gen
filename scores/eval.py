@@ -5,6 +5,7 @@ import tensorflow as tf
 from rdkit import Chem
 from rdkit.Chem import AllChem, QED, RDConfig
 from rdkit.DataStructs.cDataStructs import ConvertToNumpyArray
+import lightgbm
 
 sys.path.append(os.path.join(RDConfig.RDContribDir, 'SA_Score'))
 import sascorer

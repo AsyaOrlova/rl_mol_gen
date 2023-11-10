@@ -274,7 +274,7 @@ def _episode(environment, dqn, memory, episode, global_step, hparams,
         head=head)
     if step == hparams.max_steps_per_episode - 1:
       episode_summary = dqn.log_result(result.state, result.reward)
-      summary_writer.add_summary(episode_summary, global_step)
+      #summary_writer.add_summary(episode_summary, global_step)
       logging.info('Episode %d/%d took %gs', episode + 1, hparams.num_episodes,
                    time.time() - episode_start_time)
       logging.info('SMILES: %s\n', result.state)
@@ -300,7 +300,7 @@ def _episode(environment, dqn, memory, episode, global_step, hparams,
           next_states=state_tp1,
           done=np.expand_dims(done_mask, axis=1),
           weight=np.expand_dims(weight, axis=1))
-      summary_writer.add_summary(error_summary, global_step)
+      #summary_writer.add_summary(error_summary, global_step)
       logging.info('Current TD error: %.4f', np.mean(np.abs(td_error)))
       if hparams.prioritized:
         memory.update_priorities(
