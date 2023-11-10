@@ -34,22 +34,27 @@ RUN apt-get update && \
 	pip3 install tf_slim==1.1.0 && \ 
 	pip3 install scipy==1.10.1 && \
 	pip3 install gym==0.26.2 && \
+    pip3 install os && \
+    pip3 install sys && \
+    pip3 install pickle && \
+    pip3 install pandas  && \
     rm -rf /var/lib/apt/lists/* 
 
 # Set the working directory
 WORKDIR /workspace
 
-# Clone git repo
+# Clone rl_mol_gen git repo
 RUN git clone -b master https://github.com/AsyaOrlova/rl_mol_gen.git
+
+# Clone RAscore git repo
+RUN git clone -b master https://github.com/reymond-group/RAscore.git
 
 # Set environmental variables
 ENV PYTHONPATH=/workspace/rl_mol_gen/:$PYTHONPATH
+ENV PYTHONPATH=/workspace/RAscore/:$PYTHONPATH
 
 # Change optimizers.py in tf_slim
 COPY ./optimizers.py /usr/local/lib/python3.8/dist-packages/tf_slim/layers
-
-# Change configs in molDQN
-# COPY ./naive_dqn.json /workspace/rl_mol_gen/mol_dqn/chemgraph/configs
 
 # Set the default command
 CMD ["/bin/bash"]
