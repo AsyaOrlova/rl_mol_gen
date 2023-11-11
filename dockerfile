@@ -35,7 +35,7 @@ RUN apt-get update && \
     pip3 install scipy==1.10.1 && \
     pip3 install gym==0.26.2 && \
     pip3 install pandas==2.0.0 && \
-    pip3 install lightgbm && \
+    pip3 install lightgbm==3.3.5 && \
     rm -rf /var/lib/apt/lists/* 
 
 # Set the working directory

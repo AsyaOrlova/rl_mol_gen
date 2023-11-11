@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from rdkit import Chem
-from rdkit.Chem import AllChem, QED, RDConfig
+from rdkit.Chem import AllChem, QED, RDConfig, Lipinski, Descriptors
 from rdkit.DataStructs.cDataStructs import ConvertToNumpyArray
 import lightgbm
 
@@ -15,7 +15,7 @@ from RAscore import RAscore_XGB
 def get_fingerprint(mol):
   """ Converts SMILES into Morgan fingerprint """
   fp_array = np.zeros((0,), dtype=np.int8)
-  fp = AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024)
+  fp = AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=256)
   ConvertToNumpyArray(fp, fp_array)
   return fp_array
 
@@ -74,7 +74,7 @@ smiles = 'CC(=O)OC1=CC=CC=C1C(=O)O'
 m = Chem.MolFromSmiles(smiles)
 
 df = pd.DataFrame()
-df['bioactivity'] = check_bioactivity(m)
+df.loc[0, 'bioactivity'] = check_bioactivity(m)
 df['QED'] = check_qed(m)
 df['sascore'] = check_sascore(m)
 df['rascore'] = check_rascore(m)
