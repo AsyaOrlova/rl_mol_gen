@@ -36,6 +36,7 @@ RUN apt-get update && \
     pip3 install gym==0.26.2 && \
     pip3 install pandas==2.0.0 && \
     pip3 install lightgbm==3.3.5 && \
+    pip3 install xgboost==1.0.2 && \
     rm -rf /var/lib/apt/lists/* 
 
 # Set the working directory
